@@ -8,8 +8,8 @@ const app = express();
 passport.use(
   new GoogleStrategy(
     {
-      clientID: 'YOUR_GOOGLE_CLIENT_ID',
-      clientSecret: 'YOUR_GOOGLE_CLIENT_SECRET',
+      clientID: '347864058814-mcgfjq002tqsbas88v0mq7f7boligaos.apps.googleusercontent.com',
+      clientSecret: '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',
       callbackURL: '/login/google/callback', // Update the callback URL according to your setup
     },
     (accessToken, refreshToken, profile, done) => {
@@ -17,9 +17,10 @@ passport.use(
       // For example, create or authenticate the user in your system and generate an access token or session
       // The `profile` object contains the user's information returned by Google
       console.log('User profile:', profile);
+      // You can pass the user profile to the `done` callback if needed
 
-      // Extract the user ID from the profile
-      const userId = profile.id; // Assuming the ID is stored in the 'id' property of the profile
+      // For simplicity, we'll pass a dummy user ID as an example
+      const userId = '123'; // Replace with the actual user ID
 
       // Set a cookie to keep the user logged in
       done(null, userId);
@@ -40,7 +41,7 @@ app.get('/login/google/callback', passport.authenticate('google', { failureRedir
 });
 
 // Serve the HTML file
-app.use(express.static('public'));
+app.use(express.static('public', { index: 'index.html' }));
 
 // Start the server
 app.listen(3000, () => {
