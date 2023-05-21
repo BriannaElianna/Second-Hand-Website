@@ -17,10 +17,9 @@ passport.use(
       // For example, create or authenticate the user in your system and generate an access token or session
       // The `profile` object contains the user's information returned by Google
       console.log('User profile:', profile);
-      // You can pass the user profile to the `done` callback if needed
 
-      // For simplicity, we'll pass a dummy user ID as an example
-      const userId = '123'; // Replace with the actual user ID
+      // Extract the user ID from the profile
+      const userId = profile.id; // Assuming the ID is stored in the 'id' property of the profile
 
       // Set a cookie to keep the user logged in
       done(null, userId);
